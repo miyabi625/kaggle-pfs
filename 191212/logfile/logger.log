@@ -1,0 +1,220 @@
+[2019-12-11 23:35:57,721] [__main__] [20] [INFO] start read data
+[2019-12-11 23:35:57,724] [data_load] [19] [INFO] init start
+[2019-12-11 23:35:57,803] [data_load] [32] [INFO] init end
+[2019-12-11 23:35:57,805] [data_load] [19] [INFO] init start
+[2019-12-11 23:35:57,823] [data_load] [32] [INFO] init end
+[2019-12-11 23:35:57,825] [__main__] [26] [INFO] end read data
+[2019-12-11 23:35:57,828] [__main__] [31] [INFO] start analysis
+[2019-12-11 23:37:20,209] [__main__] [20] [INFO] start read data
+[2019-12-11 23:37:20,213] [data_load] [19] [INFO] init start
+[2019-12-11 23:37:20,326] [data_load] [32] [INFO] init end
+[2019-12-11 23:37:20,327] [data_load] [19] [INFO] init start
+[2019-12-11 23:37:20,342] [data_load] [32] [INFO] init end
+[2019-12-11 23:37:20,351] [__main__] [26] [INFO] end read data
+[2019-12-11 23:37:20,355] [__main__] [31] [INFO] start analysis
+[2019-12-11 23:39:54,798] [__main__] [20] [INFO] start read data
+[2019-12-11 23:39:54,800] [data_load] [19] [INFO] init start
+[2019-12-11 23:39:54,859] [data_load] [32] [INFO] init end
+[2019-12-11 23:39:54,861] [data_load] [19] [INFO] init start
+[2019-12-11 23:39:54,876] [data_load] [32] [INFO] init end
+[2019-12-11 23:39:54,879] [__main__] [26] [INFO] end read data
+[2019-12-11 23:39:54,882] [__main__] [31] [INFO] start analysis
+[2019-12-11 23:44:28,892] [__main__] [20] [INFO] start read data
+[2019-12-11 23:44:28,895] [data_load] [16] [INFO] init start
+[2019-12-11 23:44:29,123] [data_load] [31] [INFO] init end
+[2019-12-11 23:44:29,124] [data_load] [16] [INFO] init start
+[2019-12-11 23:45:12,106] [__main__] [20] [INFO] start read data
+[2019-12-11 23:45:12,109] [data_load] [16] [INFO] init start
+[2019-12-11 23:45:12,358] [data_load] [31] [INFO] init end
+[2019-12-11 23:45:12,359] [data_load] [16] [INFO] init start
+[2019-12-11 23:45:42,873] [__main__] [20] [INFO] start read data
+[2019-12-11 23:45:42,876] [data_load] [16] [INFO] init start
+[2019-12-11 23:45:42,933] [data_load] [31] [INFO] init end
+[2019-12-11 23:45:42,934] [data_load] [16] [INFO] init start
+[2019-12-11 23:45:42,949] [data_load] [31] [INFO] init end
+[2019-12-11 23:45:42,953] [__main__] [26] [INFO] end read data
+[2019-12-11 23:45:42,956] [__main__] [31] [INFO] start analysis
+[2019-12-11 23:52:35,963] [__main__] [20] [INFO] start read data
+[2019-12-11 23:52:35,965] [data_load] [16] [INFO] init start
+[2019-12-11 23:52:55,171] [data_load] [34] [INFO] init end
+[2019-12-11 23:53:15,057] [data_load] [16] [INFO] init start
+[2019-12-11 23:53:46,140] [__main__] [20] [INFO] start read data
+[2019-12-11 23:53:46,142] [data_load] [16] [INFO] init start
+[2019-12-11 23:53:55,481] [data_load] [34] [INFO] init end
+[2019-12-11 23:53:58,919] [data_load] [16] [INFO] init start
+[2019-12-11 23:54:21,445] [__main__] [20] [INFO] start read data
+[2019-12-11 23:54:21,448] [data_load] [16] [INFO] init start
+[2019-12-11 23:54:37,472] [data_load] [34] [INFO] init end
+[2019-12-11 23:54:37,478] [__main__] [26] [INFO] end read data
+[2019-12-11 23:54:37,480] [__main__] [31] [INFO] start analysis
+[2019-12-11 23:54:47,075] [__main__] [20] [INFO] start read data
+[2019-12-11 23:54:47,078] [data_load] [16] [INFO] init start
+[2019-12-11 23:54:55,834] [data_load] [34] [INFO] init end
+[2019-12-11 23:54:57,372] [__main__] [26] [INFO] end read data
+[2019-12-11 23:54:58,395] [__main__] [31] [INFO] start analysis
+[2019-12-11 23:55:41,424] [__main__] [20] [INFO] start read data
+[2019-12-11 23:55:41,427] [data_load] [16] [INFO] init start
+[2019-12-11 23:55:44,696] [data_load] [34] [INFO] init end
+[2019-12-11 23:55:44,697] [__main__] [26] [INFO] end read data
+[2019-12-11 23:55:44,699] [__main__] [31] [INFO] start analysis
+[2019-12-11 23:56:09,595] [__main__] [20] [INFO] start read data
+[2019-12-11 23:56:09,597] [data_load] [16] [INFO] init start
+[2019-12-11 23:56:09,761] [data_load] [34] [INFO] init end
+[2019-12-11 23:56:09,763] [__main__] [26] [INFO] end read data
+[2019-12-11 23:56:09,764] [__main__] [31] [INFO] start analysis
+[2019-12-11 23:56:33,696] [__main__] [20] [INFO] start read data
+[2019-12-11 23:56:33,698] [data_load] [16] [INFO] init start
+[2019-12-11 23:56:33,870] [data_load] [34] [INFO] init end
+[2019-12-11 23:56:33,871] [__main__] [26] [INFO] end read data
+[2019-12-11 23:56:33,873] [__main__] [31] [INFO] start analysis
+[2019-12-12 01:10:38,559] [__main__] [20] [INFO] start read data
+[2019-12-12 01:10:38,583] [data_load] [16] [INFO] init start
+[2019-12-12 01:10:38,862] [data_load] [34] [INFO] init end
+[2019-12-12 01:10:38,863] [__main__] [26] [INFO] end read data
+[2019-12-12 01:10:38,864] [__main__] [31] [INFO] start analysis
+[2019-12-12 01:11:06,411] [__main__] [20] [INFO] start read data
+[2019-12-12 01:11:06,415] [data_load] [16] [INFO] init start
+[2019-12-12 01:11:06,804] [data_load] [34] [INFO] init end
+[2019-12-12 01:11:06,806] [__main__] [26] [INFO] end read data
+[2019-12-12 01:11:06,808] [__main__] [31] [INFO] start analysis
+[2019-12-12 01:12:08,943] [__main__] [20] [INFO] start read data
+[2019-12-12 01:12:08,947] [data_load] [16] [INFO] init start
+[2019-12-12 01:12:09,060] [data_load] [34] [INFO] init end
+[2019-12-12 01:12:09,063] [__main__] [26] [INFO] end read data
+[2019-12-12 01:12:09,088] [__main__] [31] [INFO] start analysis
+[2019-12-12 01:12:41,819] [__main__] [20] [INFO] start read data
+[2019-12-12 01:12:41,823] [data_load] [16] [INFO] init start
+[2019-12-12 01:12:42,281] [data_load] [34] [INFO] init end
+[2019-12-12 01:12:42,283] [__main__] [26] [INFO] end read data
+[2019-12-12 01:12:42,285] [__main__] [31] [INFO] start analysis
+[2019-12-12 01:13:34,774] [__main__] [20] [INFO] start read data
+[2019-12-12 01:13:34,779] [data_load] [16] [INFO] init start
+[2019-12-12 01:14:06,315] [data_load] [34] [INFO] init end
+[2019-12-12 01:14:06,321] [__main__] [26] [INFO] end read data
+[2019-12-12 01:14:06,323] [__main__] [31] [INFO] start analysis
+[2019-12-12 01:14:44,778] [__main__] [20] [INFO] start read data
+[2019-12-12 01:14:44,782] [data_load] [16] [INFO] init start
+[2019-12-12 01:14:45,270] [data_load] [31] [INFO] init end
+[2019-12-12 01:14:45,272] [__main__] [26] [INFO] end read data
+[2019-12-12 01:14:45,273] [__main__] [31] [INFO] start analysis
+[2019-12-12 01:27:08,727] [__main__] [20] [INFO] start read data
+[2019-12-12 01:27:08,731] [data_load] [16] [INFO] init start
+[2019-12-12 01:27:09,178] [data_load] [26] [INFO] init end
+[2019-12-12 01:27:09,180] [__main__] [26] [INFO] end read data
+[2019-12-12 01:27:09,182] [__main__] [31] [INFO] start analysis
+[2019-12-12 01:27:47,814] [__main__] [20] [INFO] start read data
+[2019-12-12 01:27:47,820] [data_load] [16] [INFO] init start
+[2019-12-12 01:27:48,383] [data_load] [26] [INFO] init end
+[2019-12-12 01:27:48,386] [__main__] [26] [INFO] end read data
+[2019-12-12 01:27:48,391] [__main__] [31] [INFO] start analysis
+[2019-12-12 01:30:50,536] [__main__] [20] [INFO] start read data
+[2019-12-12 01:30:50,541] [data_load] [16] [INFO] init start
+[2019-12-12 01:30:51,050] [data_load] [25] [INFO] init end
+[2019-12-12 01:30:51,052] [__main__] [26] [INFO] end read data
+[2019-12-12 01:30:51,054] [__main__] [31] [INFO] start analysis
+[2019-12-12 01:31:23,734] [__main__] [20] [INFO] start read data
+[2019-12-12 01:31:23,737] [data_load] [16] [INFO] init start
+[2019-12-12 01:31:24,130] [data_load] [25] [INFO] init end
+[2019-12-12 01:31:24,132] [__main__] [26] [INFO] end read data
+[2019-12-12 01:31:24,134] [__main__] [31] [INFO] start analysis
+[2019-12-12 01:34:22,050] [__main__] [20] [INFO] start read data
+[2019-12-12 01:34:22,054] [data_load] [16] [INFO] init start
+[2019-12-12 01:34:22,402] [data_load] [25] [INFO] init end
+[2019-12-12 01:34:22,403] [__main__] [26] [INFO] end read data
+[2019-12-12 01:34:22,405] [__main__] [31] [INFO] start analysis
+[2019-12-12 01:34:44,040] [__main__] [20] [INFO] start read data
+[2019-12-12 01:34:44,047] [data_load] [16] [INFO] init start
+[2019-12-12 01:34:44,445] [data_load] [25] [INFO] init end
+[2019-12-12 01:34:44,447] [__main__] [26] [INFO] end read data
+[2019-12-12 01:34:44,450] [__main__] [31] [INFO] start analysis
+[2019-12-12 01:35:59,116] [__main__] [20] [INFO] start read data
+[2019-12-12 01:35:59,160] [data_load] [16] [INFO] init start
+[2019-12-12 01:35:59,568] [data_load] [25] [INFO] init end
+[2019-12-12 01:35:59,570] [__main__] [26] [INFO] end read data
+[2019-12-12 01:35:59,575] [__main__] [31] [INFO] start analysis
+[2019-12-12 01:42:50,779] [__main__] [20] [INFO] start read data
+[2019-12-12 01:42:50,785] [data_load] [16] [INFO] init start
+[2019-12-12 01:42:51,253] [data_load] [25] [INFO] init end
+[2019-12-12 01:42:51,255] [__main__] [26] [INFO] end read data
+[2019-12-12 01:42:51,257] [__main__] [31] [INFO] start analysis
+[2019-12-12 07:20:25,601] [__main__] [20] [INFO] start read data
+[2019-12-12 07:20:25,606] [data_load] [16] [INFO] init start
+[2019-12-12 07:20:25,823] [data_load] [30] [INFO] init end
+[2019-12-12 07:20:25,825] [__main__] [26] [INFO] end read data
+[2019-12-12 07:20:25,827] [__main__] [31] [INFO] start analysis
+[2019-12-12 07:22:41,515] [__main__] [20] [INFO] start read data
+[2019-12-12 07:22:41,518] [data_load] [16] [INFO] init start
+[2019-12-12 07:22:41,820] [data_load] [30] [INFO] init end
+[2019-12-12 07:22:41,822] [__main__] [26] [INFO] end read data
+[2019-12-12 07:22:41,824] [__main__] [31] [INFO] start analysis
+[2019-12-12 07:23:29,493] [__main__] [20] [INFO] start read data
+[2019-12-12 07:23:29,496] [data_load] [16] [INFO] init start
+[2019-12-12 07:23:29,792] [data_load] [30] [INFO] init end
+[2019-12-12 07:23:29,793] [__main__] [26] [INFO] end read data
+[2019-12-12 07:23:29,795] [__main__] [31] [INFO] start analysis
+[2019-12-12 07:24:03,125] [__main__] [20] [INFO] start read data
+[2019-12-12 07:24:03,128] [data_load] [16] [INFO] init start
+[2019-12-12 07:24:03,474] [data_load] [30] [INFO] init end
+[2019-12-12 07:24:03,476] [__main__] [26] [INFO] end read data
+[2019-12-12 07:24:03,478] [__main__] [31] [INFO] start analysis
+[2019-12-12 07:24:26,425] [__main__] [20] [INFO] start read data
+[2019-12-12 07:24:26,457] [data_load] [16] [INFO] init start
+[2019-12-12 07:24:26,690] [data_load] [30] [INFO] init end
+[2019-12-12 07:24:26,691] [__main__] [26] [INFO] end read data
+[2019-12-12 07:24:26,693] [__main__] [31] [INFO] start analysis
+[2019-12-12 07:27:32,324] [__main__] [20] [INFO] start read data
+[2019-12-12 07:27:32,329] [data_load] [16] [INFO] init start
+[2019-12-12 07:27:32,603] [data_load] [30] [INFO] init end
+[2019-12-12 07:27:32,604] [__main__] [26] [INFO] end read data
+[2019-12-12 07:27:32,606] [__main__] [31] [INFO] start analysis
+[2019-12-12 07:30:13,451] [__main__] [20] [INFO] start read data
+[2019-12-12 07:30:13,454] [data_load] [16] [INFO] init start
+[2019-12-12 07:30:13,731] [data_load] [32] [INFO] init end
+[2019-12-12 07:30:13,732] [__main__] [26] [INFO] end read data
+[2019-12-12 07:30:13,745] [__main__] [31] [INFO] start analysis
+[2019-12-12 07:31:41,560] [__main__] [20] [INFO] start read data
+[2019-12-12 07:31:41,563] [data_load] [16] [INFO] init start
+[2019-12-12 07:31:41,849] [data_load] [32] [INFO] init end
+[2019-12-12 07:31:41,851] [__main__] [26] [INFO] end read data
+[2019-12-12 07:31:41,853] [__main__] [31] [INFO] start analysis
+[2019-12-12 07:32:45,791] [__main__] [20] [INFO] start read data
+[2019-12-12 07:32:45,793] [data_load] [16] [INFO] init start
+[2019-12-12 07:32:46,066] [data_load] [33] [INFO] init end
+[2019-12-12 07:32:46,068] [__main__] [26] [INFO] end read data
+[2019-12-12 07:32:46,106] [__main__] [31] [INFO] start analysis
+[2019-12-12 07:36:04,230] [__main__] [20] [INFO] start read data
+[2019-12-12 07:36:04,232] [data_load] [16] [INFO] init start
+[2019-12-12 07:36:04,625] [data_load] [36] [INFO] init end
+[2019-12-12 07:36:04,626] [__main__] [26] [INFO] end read data
+[2019-12-12 07:36:04,628] [__main__] [31] [INFO] start analysis
+[2019-12-12 07:36:36,171] [__main__] [20] [INFO] start read data
+[2019-12-12 07:36:36,175] [data_load] [16] [INFO] init start
+[2019-12-12 07:36:36,426] [data_load] [36] [INFO] init end
+[2019-12-12 07:36:36,427] [__main__] [26] [INFO] end read data
+[2019-12-12 07:36:36,439] [__main__] [31] [INFO] start analysis
+[2019-12-12 07:38:31,239] [__main__] [20] [INFO] start read data
+[2019-12-12 07:38:31,242] [data_load] [16] [INFO] init start
+[2019-12-12 07:38:31,572] [data_load] [38] [INFO] init end
+[2019-12-12 07:38:31,573] [__main__] [26] [INFO] end read data
+[2019-12-12 07:38:31,575] [__main__] [31] [INFO] start analysis
+[2019-12-12 07:43:45,830] [__main__] [20] [INFO] start read data
+[2019-12-12 07:43:45,833] [data_load] [16] [INFO] init start
+[2019-12-12 07:43:46,140] [data_load] [38] [INFO] init end
+[2019-12-12 07:43:46,140] [__main__] [26] [INFO] end read data
+[2019-12-12 07:43:46,142] [__main__] [31] [INFO] start analysis
+[2019-12-12 07:52:06,261] [__main__] [20] [INFO] start read data
+[2019-12-12 07:52:06,264] [data_load] [16] [INFO] init start
+[2019-12-12 07:52:06,572] [data_load] [39] [INFO] init end
+[2019-12-12 07:52:06,574] [__main__] [26] [INFO] end read data
+[2019-12-12 07:52:06,575] [__main__] [31] [INFO] start analysis
+[2019-12-12 07:53:11,482] [__main__] [20] [INFO] start read data
+[2019-12-12 07:53:11,486] [data_load] [16] [INFO] init start
+[2019-12-12 07:53:11,938] [data_load] [39] [INFO] init end
+[2019-12-12 07:53:11,939] [__main__] [26] [INFO] end read data
+[2019-12-12 07:53:11,941] [__main__] [31] [INFO] start analysis
+[2019-12-12 08:18:28,186] [__main__] [20] [INFO] start read data
+[2019-12-12 08:18:28,188] [data_load] [16] [INFO] init start
+[2019-12-12 08:18:28,713] [data_load] [31] [INFO] init end
+[2019-12-12 08:18:28,716] [__main__] [24] [INFO] end read data
+[2019-12-12 08:18:28,719] [__main__] [29] [INFO] start analysis
+[2019-12-12 08:18:28,861] [__main__] [37] [INFO] end analysis
