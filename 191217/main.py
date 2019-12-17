@@ -38,27 +38,33 @@ log.info('start analysis')
 ### トレーニングデータ用意  ###################
 # トレーニングデータを取得する
 tmp_df = dl.getTrainValues()
-#train_data = tmp_df[tmp_df.date_block_num == 32].drop('date_block_num',axis=1)
-#test_data = tmp_df[tmp_df.date_block_num == 33].drop('date_block_num',axis=1)
-train_data = tmp_df[tmp_df.date_block_num == 33].drop('date_block_num',axis=1)
-print(train_data)
+train_y = tmp_df[['shop_id','item_id','cnt33']]
+print(train_y)
+train_x = tmp_df.drop('cnt33',axis=1)
+print(train_x)
+val = tmp_df[['shop_id','item_id']]
+print(val)
+
+model = model.Model()
+model.fit(train_x.values,train_y.values)
+pred = model.predict(val.values)
+output = pred[0::,2].astype(float)
+print(output)
+
+score = model.predictScore(train_y.values,output)
+print(score)
+
+#テストデータに適用
 test_data = dl.getTestValues()
-print(test_data)
 
 ids = test_data['ID']
 test_data = test_data.drop('ID',axis=1)
 
-model = model.Model()
 model.fit((train_data.values)[0::, 0:(len(train_data.columns)-1)],(train_data.values)[0::, 0::])
-#print((test_data.values)[0::, 0:(len(test_data.columns)-1)])
-#output = model.predict((test_data.values)[0::, 0:(len(test_data.columns)-1)])
+
 pred = model.predict(test_data.values)
 output = pred[0::,2].astype(float)
 print(output)
-
-
-#score = model.predictScore((test_data.values)[0::, 0::],output)
-#print(score)
 
 log.info('end analysis')
 

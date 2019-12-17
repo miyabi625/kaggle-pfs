@@ -13,6 +13,8 @@ class DataLoad:
     FILE_TEST_CSV = './input/test.csv'
     #FILE_TEST_CSV = './input/test2.csv'
 
+    LOOP_COUNT = 3
+
     ####################################################
     # ログ宣言
     ####################################################
@@ -45,12 +47,18 @@ class DataLoad:
             #'item_price':np.mean,
             'item_cnt_day':np.sum})
         
-        mrg_df = tmp_df[tmp_df.date_block_num == 32].rename(columns={'item_cnt_day': 'cnt32'}).drop('date_block_num', axis=1)
-        print(mrg_df)
+        max_block = tmp_df.date_block_num.max()
+        min_block = max_block-(self.LOOP_COUNT-1)
 
-        mrg_df = pd.merge(mrg_df,
-            tmp_df[tmp_df.date_block_num == 33].rename(columns={'item_cnt_day': 'cnt33'}).drop('date_block_num', axis=1)
-            ,on=['shop_id', 'item_id'], how='outer').fillna(0)
+        mrg_df = tmp_df[tmp_df.date_block_num == min_block].rename(columns={'item_cnt_day': 'cnt'+str(min_block)}).drop('date_block_num', axis=1)
+
+        for i in range(self.LOOP_COUNT -1):
+            next = min_block + i + 1
+            
+            mrg_df = pd.merge(mrg_df
+                ,tmp_df[tmp_df.date_block_num == next].rename(columns={'item_cnt_day': 'cnt'+str(next)}).drop('date_block_num', axis=1)
+                ,on=['shop_id', 'item_id'], how='outer').fillna(0)
+
         print(mrg_df)
         
         self.df = mrg_df
