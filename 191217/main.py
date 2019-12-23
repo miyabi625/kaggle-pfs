@@ -23,11 +23,6 @@ log.info('start read data')
 #instance作成
 dl = data_load.DataLoad()
 
-# トレーニングデータ
-dl.read_train_csv()
-# テストデータ
-dl.read_test_csv()
-
 log.info('end read data')
 
 ####################################################
@@ -39,11 +34,11 @@ log.info('start analysis')
 # トレーニングデータを取得する
 tmp_df = dl.getTrainValues()
 train_y = tmp_df[['shop_id','item_id','cnt33']]
-print(train_y)
+print(train_y.head())
 train_x = tmp_df.drop('cnt33',axis=1)
-print(train_x)
+print(train_x.head())
 val = tmp_df[['shop_id','item_id']]
-print(val)
+print(val.head())
 
 model = model.Model()
 model.fit(train_x.values,train_y.values)
