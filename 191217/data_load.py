@@ -8,10 +8,10 @@ class DataLoad:
     ####################################################
     # 定数宣言
     ####################################################
-    FILE_TRAIN_CSV = '../input/sales_train.csv'
-    #FILE_TRAIN_CSV = './input/sales_train_v2.csv'
-    FILE_TEST_CSV = '../input/test.csv'
-    #FILE_TEST_CSV = './input/test2.csv'
+    #FILE_TRAIN_CSV = '../input/sales_train.csv'
+    FILE_TRAIN_CSV = '../input/sales_train_v2.csv'
+    #FILE_TEST_CSV = '../input/test.csv'
+    FILE_TEST_CSV = '../input/test2.csv'
 
     LOOP_COUNT = 3
 
@@ -22,7 +22,7 @@ class DataLoad:
     logger.setLogger(log)
     
     # constructor
-    def __init__(self):
+    def __init__(self,windows_size):
         #CSVデータの読み込み
         self.log.info('DataLoad constructor start')
         
@@ -30,7 +30,7 @@ class DataLoad:
         #20400	2	5037
 
         ## Load test data
-        test_df = pd.read_csv(self.FILE_TEST_CSV, header=0,
+        test_df_csv = pd.read_csv(self.FILE_TEST_CSV, header=0,
             dtype = {
                 'ID':'str',
                 'shop_id':'int',
@@ -40,7 +40,7 @@ class DataLoad:
         #14.01.2013	0	2	11330	149	1
 
         ## Load training data
-        sales_train_df = pd.read_csv(self.FILE_TRAIN_CSV, header=0,
+        train_df_csv = pd.read_csv(self.FILE_TRAIN_CSV, header=0,
             dtype = {
                 'date':'str',
                 'date_block_num':'int',
@@ -50,33 +50,38 @@ class DataLoad:
                 'item_cnt_day':'float'})
 
         # testデータをtrainデータに合わせる
-        mrg_df = pd.DataFrame()
+        train_df = pd.DataFrame()
         for i in range(35):
-            tmp = test_df[['shop_id','item_id']]
+            tmp = test_df_csv[['shop_id','item_id']]
             tmp['date_block_num'] = i
-            mrg_df = pd.concat([mrg_df,tmp],axis=0)
+            train_df = pd.concat([train_df,tmp],axis=0)
         
         # 月別に集計する
-        sales_train_df = sales_train_df.groupby(['date_block_num','shop_id','item_id'], as_index=False).agg({
+        mon_train_df = train_df_csv.groupby(['date_block_num','shop_id','item_id'], as_index=False).agg({
             #'item_price':np.mean,
-            'item_cnt_day':np.sum})
+            'item_cnt_day':np.sum}).rename(columns={'item_cnt_day':'item_cnt_month'})
         
-        # Windowサイズ
-        windows_size = 3 # testデータの11月も含めない期間
+        # testデータに月別集計の結果をマージする
+        train_df = pd.merge(train_df,mon_train_df,on=['date_block_num','shop_id', 'item_id'], how='left').fillna(0)
+        
+        # shop_id*item_id*date_block_numでソート
+        train_df = train_df.sort_values(
+            ['shop_id', 'item_id','date_block_num'],
+            ascending=[True, True,True]
+        ).reset_index(drop=True)
+
+        # lag用データを保持する
+        lag_df = train_df
 
         # testデータに月別の売り上げ数をマージする
-        for i in range(windows_size):
-            t = 33 - i
-            mrg_df = pd.merge(mrg_df
-                ,sales_train_df[sales_train_df.date_block_num == t].rename(columns={'item_cnt_day': 'cnt'+str(i+1)}).drop('date_block_num', axis=1)
-                ,on=['shop_id', 'item_id'], how='left')
+        for i in range(1,windows_size):
+            train_df = pd.concat([train_df, lag_df.shift(i).rename(columns={'item_cnt_month': 'lag'+str(i)})['lag'+str(i)]], axis=1)
 
         # N/Aを0に置換する
-        mrg_df = mrg_df.fillna(0)
-        print(mrg_df)
+        train_df = train_df.fillna(0)
         
-        self.df = mrg_df
-        self.test_df = test_df
+        self.df = train_df
+        self.test_df = test_df_csv
 
         self.log.info('DataLoad constructor end')
 
@@ -86,4 +91,4 @@ class DataLoad:
         
     # テストデータの取得
     def getTestValues(self):
-        return self.df_test
+        return self.test_df

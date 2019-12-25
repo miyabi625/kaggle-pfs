@@ -28,8 +28,15 @@ class Model:
 
     # 結果の取得
     def predict(self,test_data):
-        return self.model.predict(test_data).astype(int)
+        return self.model.predict(test_data)
     
     #評価（RMSE）
     def predictScore(self,y_true,y_pred):
-        return np.sqrt(mean_squared_error(y_true, y_pred))
+        rmse_val = np.sqrt(
+            np.mean(
+                np.square(
+                    np.array(y_true - y_pred)
+                )
+            )
+        )
+        return rmse_val
