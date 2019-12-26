@@ -3,11 +3,16 @@
 ####################################################
 import data_load
 import model as model
-import submit_csv
 import logger
 import logging
 import numpy as np
 import pandas as pd
+
+####################################################
+# 定数宣言
+####################################################
+# Windowサイズ
+WINDOW_SIZE = 13 # testデータの11月も含めた期間
 
 ####################################################
 # ログ宣言
@@ -20,8 +25,8 @@ logger.setLogger(log)
 ####################################################
 log.info('start read data')
 
-#instance作成
-dl = data_load.DataLoad()
+#csvデータの読み込み
+dl = data_load.DataLoad(WINDOW_SIZE)
 
 log.info('end read data')
 
@@ -31,35 +36,34 @@ log.info('end read data')
 log.info('start analysis')
 
 ### トレーニングデータ用意  ###################
+
 # トレーニングデータを取得する
-tmp_df = dl.getTrainValues()
-train_y = tmp_df[['shop_id','item_id','cnt33']]
-print(train_y.head())
-train_x = tmp_df.drop('cnt33',axis=1)
-print(train_x.head())
-val = tmp_df[['shop_id','item_id']]
-print(val.head())
+train = dl.getTrainValues()
+train_ = train[((34-WINDOW_SIZE+1) <= train.date_block_num) & (train.date_block_num <= 33)].reset_index(drop=True)
+train_y = train_['item_cnt_month']
+train_x = train_.drop(columns=['date_block_num','item_cnt_month'])
+
+log.info(train_y.head())
+log.info(train_y.count())
+log.info(train_x.head())
+log.info(train_x.count())
 
 model = model.Model()
 model.fit(train_x.values,train_y.values)
-pred = model.predict(val.values)
-output = pred[0::,2].astype(float)
-print(output)
 
-score = model.predictScore(train_y.values,output)
-print(score)
+pred = model.predict(train_x)
+score = model.predictScore(train_y.values,pred)
+log.info(score)
 
 #テストデータに適用
-test_data = dl.getTestValues()
+test = dl.getTestValues()
 
-ids = test_data['ID']
-test_data = test_data.drop('ID',axis=1)
+test_ = train[(train.date_block_num == 34)].reset_index(drop=True)
+test_x = test_.drop(columns=['date_block_num','item_cnt_month'])
 
-model.fit((train_data.values)[0::, 0:(len(train_data.columns)-1)],(train_data.values)[0::, 0::])
+log.info(test_x.head())
 
-pred = model.predict(test_data.values)
-output = pred[0::,2].astype(float)
-print(output)
+pred = model.predict(test_x)
 
 log.info('end analysis')
 
@@ -68,6 +72,16 @@ log.info('end analysis')
 ####################################################
 log.info('start output data')
 
-sb = submit_csv.SubmitCsv("./output/pfs_submit.csv")
-sb.to_csv(["ID", "item_cnt_month"],zip(ids, output))
+test_x['item_cnt_month'] = pred
+submission = pd.merge(
+    test,
+    test_x[['shop_id','item_id','item_cnt_month']],
+    on=['shop_id','item_id'],
+    how='left'
+)
+log.info(submission[['ID','item_cnt_month']].head())
+
+# 提出ファイル作成
+submission[['ID','item_cnt_month']].to_csv('./output/submission.csv', index=False)
+
 log.info('end output data')
