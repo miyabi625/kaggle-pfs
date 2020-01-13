@@ -43,16 +43,21 @@ train_ = train[((34-WINDOW_SIZE+1) <= train.date_block_num) & (train.date_block_
 train_y = train_['item_cnt_month']
 train_x = train_.drop(columns=['date_block_num','item_cnt_month'])
 
-log.info(train_y.head())
+#log.info(train_y.head())
 log.info(train_y.count())
-log.info(train_x.head())
+#log.info(train_x.head())
 log.info(train_x.count())
 
 model = model.Model()
 model.fit(train_x.values,train_y.values)
 
+log.info('feature_importances')
+log.info(model.get_feature_importances(train_x))
+
 pred = model.predict(train_x)
 score = model.predictScore(train_y.values,pred)
+
+log.info('predictScore')
 log.info(score)
 
 #テストデータに適用
@@ -61,7 +66,7 @@ test = dl.getTestValues()
 test_ = train[(train.date_block_num == 34)].reset_index(drop=True)
 test_x = test_.drop(columns=['date_block_num','item_cnt_month'])
 
-log.info(test_x.head())
+#log.info(test_x.head())
 
 pred = model.predict(test_x)
 

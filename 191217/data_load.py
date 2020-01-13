@@ -8,12 +8,13 @@ class DataLoad:
     ####################################################
     # 定数宣言
     ####################################################
-    #FILE_TRAIN_CSV = '../input/sales_train.csv'
     FILE_TRAIN_CSV = '../input/sales_train_v2.csv'
-    #FILE_TEST_CSV = '../input/test.csv'
-    FILE_TEST_CSV = '../input/test2.csv'
-
-    LOOP_COUNT = 3
+    FILE_TEST_CSV = '../input/test.csv'
+    #FILE_TRAIN_CSV = '../input/sales_train_sample.csv'
+    #FILE_TEST_CSV = '../input/test_sample.csv'
+    FILE_ITEM_CATEGORIES_CSV = '../input/item_categories.csv'
+    FILE_ITEMS_CSV = '../input/items.csv'
+    FILE_SHOPS_CSV = '../input/shops.csv'
 
     ####################################################
     # ログ宣言
@@ -25,9 +26,6 @@ class DataLoad:
     def __init__(self,windows_size):
         #CSVデータの読み込み
         self.log.info('DataLoad constructor start')
-        
-        #ID	shop_id	item_id
-        #20400	2	5037
 
         ## Load test data
         test_df_csv = pd.read_csv(self.FILE_TEST_CSV, header=0,
@@ -35,9 +33,6 @@ class DataLoad:
                 'ID':'str',
                 'shop_id':'int',
                 'item_id':'int'})
-
-        #date	date_block_num	shop_id	item_id	item_price	item_cnt_day
-        #14.01.2013	0	2	11330	149	1
 
         ## Load training data
         train_df_csv = pd.read_csv(self.FILE_TRAIN_CSV, header=0,
@@ -48,6 +43,25 @@ class DataLoad:
                 'item_id':'int',
                 'item_price':'float',
                 'item_cnt_day':'float'})
+
+        ## Load FILE_ITEM_CATEGORIES_CSV data
+        item_categories_df_csv = pd.read_csv(self.FILE_ITEM_CATEGORIES_CSV, header=0,
+            dtype = {
+                'item_category_name':'str',
+                'item_category_id':'int'})
+
+        ## Load FILE_ITEMS_CSV data
+        items_df_csv = pd.read_csv(self.FILE_ITEMS_CSV, header=0,
+            dtype = {
+                'item_name':'str',
+                'item_id':'int',
+                'item_category_id':'int'})
+
+        ## Load FILE_SHOPS_CSV data
+        shops_df_csv = pd.read_csv(self.FILE_SHOPS_CSV, header=0,
+            dtype = {
+                'shop_name':'str',
+                'shop_id':'int'})
 
         # testデータをtrainデータに合わせる
         train_df = pd.DataFrame()
@@ -82,7 +96,22 @@ class DataLoad:
 
         # N/Aを0に置換する
         train_df = train_df.fillna(0)
-        
+
+        # shopsを結合する
+        train_df = pd.merge(train_df, shops_df_csv, on='shop_id', how='left')
+
+        # itemsを結合する
+        train_df = pd.merge(train_df, items_df_csv, on='item_id', how='left')
+
+        # item_categoriesを結合する
+        train_df = pd.merge(train_df, item_categories_df_csv, on='item_category_id', how='left')
+
+        # LabelEncoderの実施
+        le = LabelEncoder()
+        train_df['shop_name'] = pd.DataFrame({'shop_name':le.fit_transform(train_df['shop_name'])})
+        train_df['item_name'] = pd.DataFrame({'item_name':le.fit_transform(train_df['item_name'])})
+        train_df['item_category_name'] = pd.DataFrame({'item_category_name':le.fit_transform(train_df['item_category_name'])})
+
         self.df = train_df
         self.test_df = test_df_csv
 

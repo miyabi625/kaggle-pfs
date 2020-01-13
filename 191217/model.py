@@ -29,6 +29,12 @@ class Model:
     # 結果の取得
     def predict(self,test_data):
         return self.model.predict(test_data)
+
+    # 特徴量の重要度の取得
+    def get_feature_importances(self,x_train):
+        x = x_train.columns.values
+        y = self.model.feature_importances_
+        return pd.DataFrame({"feature":x,"importance":y}).sort_values(by="importance",ascending=False)
     
     #評価（RMSE）
     def predictScore(self,y_true,y_pred):
