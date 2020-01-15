@@ -12,7 +12,7 @@ import pandas as pd
 # 定数宣言
 ####################################################
 # Windowサイズ
-WINDOW_SIZE = 13 # testデータの11月も含めた期間
+WINDOW_SIZE = 7 # testデータの11月も含めた期間
 
 ####################################################
 # ログ宣言
@@ -78,13 +78,14 @@ log.info('end analysis')
 log.info('start output data')
 
 test_x['item_cnt_month'] = pred
+test_x['shop_id'] = test_x['unique_no'] % 100
+test_x['item_id'] = test_x['unique_no'] // 100
 submission = pd.merge(
     test,
     test_x[['shop_id','item_id','item_cnt_month']],
     on=['shop_id','item_id'],
     how='left'
 )
-log.info(submission[['ID','item_cnt_month']].head())
 
 # 提出ファイル作成
 submission[['ID','item_cnt_month']].to_csv('./output/submission.csv', index=False)
