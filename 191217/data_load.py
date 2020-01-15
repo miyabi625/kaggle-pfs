@@ -73,6 +73,19 @@ class DataLoad:
             tmp['date_block_num'] = i
             train_df = pd.concat([train_df,tmp],axis=0)
         
+        # item別に売り上げ数、売上高を集計する
+        item_mon_train_df = train_df_csv.groupby(['date_block_num','item_id'], as_index=False).agg({
+            'item_sales_day':np.sum,
+            'item_cnt_day':np.sum}).rename(columns={'item_cnt_day':'only_item_cnt_month','item_sales_day':'only_item_sales_month'})
+
+        # item別の最高額を編集する
+        item_max_train_df = train_df_csv.groupby(['date_block_num','item_id'], as_index=False).agg({
+            'item_price':np.max}).rename(columns={'item_price':'item_price_max'})
+
+        # shop別の金額平均を求める
+        mean_train_df = train_df_csv.groupby(['date_block_num','shop_id','item_id'], as_index=False).agg({
+            'item_price':np.mean}).rename(columns={'item_price':'item_price_mean'})
+        
         # 月別に集計する
         mon_train_df = train_df_csv.groupby(['date_block_num','shop_id','item_id'], as_index=False).agg({
             'item_sales_day':np.sum,
@@ -80,9 +93,19 @@ class DataLoad:
         
         # 0～20の範囲でクリップする
         mon_train_df['item_cnt_month'] = mon_train_df['item_cnt_month'].clip(0,20)
+
+        # item別に売り上げ数、売上高、shop別のitemの最高額の結果をマージする
+        mon_train_df = pd.merge(mon_train_df,item_mon_train_df,on=['date_block_num','item_id'], how='left').fillna(0)
+        mon_train_df = pd.merge(mon_train_df,item_max_train_df,on=['date_block_num','item_id'], how='left').fillna(0)
+        mon_train_df = pd.merge(mon_train_df,mean_train_df,on=['date_block_num','shop_id', 'item_id'], how='left').fillna(0)
         
         # testデータに月別集計の結果をマージする
         train_df = pd.merge(train_df,mon_train_df,on=['date_block_num','shop_id', 'item_id'], how='left').fillna(0)
+
+        # 割引率を求める
+        train_df['discount_rate'] = train_df[train_df["item_price_max"] != 0]["item_price_mean"] / train_df[train_df["item_price_max"] != 0]["item_price_max"]
+        train_df.loc[((train_df["item_price_max"] == 0) & (train_df["item_price_mean"] != 0)), "discount_rate"] = 1 # 値がない場合は１とする
+        train_df.loc[((train_df["item_price_max"] == 0) & (train_df["item_price_mean"] == 0)), "discount_rate"] = 0
         
         # shop_id*item_id*date_block_numでソート
         train_df = train_df.sort_values(
@@ -95,8 +118,7 @@ class DataLoad:
 
         # testデータに月別の売り上げ数をマージする
         lagNum = list(range(1,windows_size))
-        lagNum.append(12)
-        lagNum.append(24)
+        lagNum.append(13)
         for i in lagNum:
             train_df = pd.concat([train_df, lag_df.shift(i).rename(columns={'item_cnt_month': 'lag'+str(i)})['lag'+str(i)]], axis=1)
 
@@ -109,10 +131,15 @@ class DataLoad:
         # N/Aを0に置換する
         train_df = train_df.fillna(0)
 
+        # 前月比の項目を追加する
+        train_df['MoM'] = train_df[train_df["lag2"] != 0]["lag1"] / train_df[train_df["lag2"] != 0]["lag2"]
+        train_df.loc[((train_df["lag2"] == 0) & (train_df["lag1"] != 0)), "MoM"] = 1 # 前月の値がない場合は１とする
+        train_df.loc[((train_df["lag2"] == 0) & (train_df["lag1"] == 0)), "MoM"] = 0
+
         # 前年同月比の項目を追加する
-        train_df['YoY'] = train_df[train_df["lag24"] != 0]["lag12"] / train_df[train_df["lag24"] != 0]["lag24"]
-        train_df.loc[((train_df["lag24"] == 0) & (train_df["lag12"] != 0)), "YoY"] = 1 # 前々年の値がない場合は１とする
-        train_df.loc[((train_df["lag24"] == 0) & (train_df["lag12"] == 0)), "YoY"] = 0
+        train_df['YoY'] = train_df[train_df["lag13"] != 0]["lag1"] / train_df[train_df["lag13"] != 0]["lag13"]
+        train_df.loc[((train_df["lag13"] == 0) & (train_df["lag1"] != 0)), "YoY"] = 1 # 前年の値がない場合は１とする
+        train_df.loc[((train_df["lag13"] == 0) & (train_df["lag1"] == 0)), "YoY"] = 0
 
         # # shopsを結合する
         # train_df = pd.merge(train_df, shops_df_csv, on='shop_id', how='left')
